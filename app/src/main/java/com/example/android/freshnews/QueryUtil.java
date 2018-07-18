@@ -29,13 +29,14 @@ public final class QueryUtil {
     }
 
     public static ArrayList<String[]> fetchingData(String url) {
+        ArrayList<String[]> arrayList;
         String jsonResponse = "";
         try {
             jsonResponse = makeHttpRequest(createUrl(url));
         } catch (IOException e) {
             Log.e(LOG, "Error closing input stream", e);
         }
-        ArrayList<String[]> arrayList = extractNews(jsonResponse);
+        arrayList = extractNews(jsonResponse);
         return arrayList;
     }
 
@@ -95,6 +96,7 @@ public final class QueryUtil {
 
     public static ArrayList<String[]> extractNews(String jsonRes) {
         ArrayList<String[]> news = new ArrayList<>();
+
         if (TextUtils.isEmpty(jsonRes)) {
             return null;
         }

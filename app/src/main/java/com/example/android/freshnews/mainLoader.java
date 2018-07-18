@@ -11,6 +11,7 @@ public class mainLoader extends AsyncTaskLoader<ArrayList<String[]>> {
     public mainLoader(Context context,String url) {
         super(context);
         mUrl = url;
+
     }
 
     @Override

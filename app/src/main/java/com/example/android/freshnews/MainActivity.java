@@ -2,15 +2,15 @@ package com.example.android.freshnews;
 
 import android.app.LoaderManager;
 import android.content.Loader;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<ArrayList<String[]>> {
+    public static ArrayList<String[]> resultList;
     public static final String requestedUrl =
             "http://content.guardianapis.com/search?section=technology&q=programming&api-key=50bf6d44-e9ce-401d-bb1a-2e38823403e6";
     ListView listView;
@@ -21,10 +21,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        List<String[]> resultList = new ArrayList<>();
+        resultList = new ArrayList<>();
         listView = findViewById(R.id.list);
         adapter =
-                new ArrayAdapter<>(this, android.R.layout.simple_list_item_2, android.R.id.text1, resultList);
+                new ArrayAdapter<>(this, android.R.layout.simple_list_item_2, android.R.id.text1, new ArrayList<String[]>());
         listView.setAdapter(adapter);
         getLoaderManager().initLoader(0, null, this).forceLoad();
     }
