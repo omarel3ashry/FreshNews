@@ -17,7 +17,6 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public final class QueryUtil {
-
     private static URL createUrl(String requestedURL) {
         URL url = null;
         try {
@@ -94,7 +93,9 @@ public final class QueryUtil {
         return sb.toString();
     }
 
-    public static ArrayList<String[]> extractNews(String jsonRes) {
+
+    private static ArrayList<String[]> extractNews(String jsonRes) {
+
         ArrayList<String[]> news = new ArrayList<>();
 
         if (TextUtils.isEmpty(jsonRes)) {
@@ -109,15 +110,16 @@ public final class QueryUtil {
             for (int i = 0; i < results.length(); i++) {
 
                 JSONObject object = results.getJSONObject(i);
-                String firstString = object.getString("webPublicationDate");
+                String firstString = object.getString("sectionName");
                 String secondString = object.getString("webTitle");
+                String pageURL = object.getString("webUrl");
 
                 news.add(
-                        new String[]{firstString, secondString});
+                        new String[]{firstString, secondString, pageURL});
 
             }
         } catch (JSONException e) {
-            Log.e("QueryUtils", "Problem parsing the news JSON results", e);
+            Log.e("QueryUtil", "Problem parsing the news JSON results", e);
         }
         return news;
     }

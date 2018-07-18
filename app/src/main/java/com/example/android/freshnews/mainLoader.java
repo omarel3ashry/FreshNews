@@ -5,10 +5,12 @@ import android.content.Context;
 
 import java.util.ArrayList;
 
-public class mainLoader extends AsyncTaskLoader<ArrayList<String[]>> {
-    String mUrl;
+import static com.example.android.freshnews.QueryUtil.fetchingData;
 
-    public mainLoader(Context context,String url) {
+public class mainLoader extends AsyncTaskLoader<ArrayList<String[]>> {
+    private String mUrl;
+
+    mainLoader(Context context, String url) {
         super(context);
         mUrl = url;
 
@@ -20,7 +22,6 @@ public class mainLoader extends AsyncTaskLoader<ArrayList<String[]>> {
         if (mUrl == null) {
             return null;
         }
-        ArrayList<String[]> arrayList = QueryUtil.fetchingData(MainActivity.requestedUrl);
-        return arrayList;
+        return fetchingData(MainActivity.requestedUrl);
     }
 }
