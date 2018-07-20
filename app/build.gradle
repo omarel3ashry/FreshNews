@@ -1,5 +1,8 @@
 apply plugin: 'com.android.application'
 
+def API_KEY = '"' + apiKey + '"' ?: "Defin Api Key"
+def STRING = 'String'
+
 android {
     compileSdkVersion 27
     defaultConfig {
@@ -9,6 +12,12 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        each {type ->
+            type.buildConfigField STRING,'apiKey',API_KEY
+        }
+        manifestPlaceholders = [
+                API_KEY : API_KEY
+        ]
     }
     buildTypes {
         release {

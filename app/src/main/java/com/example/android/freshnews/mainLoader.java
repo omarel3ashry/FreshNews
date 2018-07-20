@@ -22,6 +22,6 @@ public class mainLoader extends AsyncTaskLoader<ArrayList<String[]>> {
         if (mUrl == null) {
             return null;
         }
-        return fetchingData(MainActivity.requestedUrl);
+        return fetchingData(MainActivity.requestedUrl + MainActivity.apiKey);
     }
 }
