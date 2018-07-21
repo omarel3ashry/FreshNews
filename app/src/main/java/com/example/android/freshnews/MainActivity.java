@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     public static ArrayList<String[]> resultList;
     public static final String requestedUrl =
             "https://content.guardianapis.com/search?section=technology%7Ceducation%7Cbreak-into-tech%7Cinfo&from-date=2017-01-01&page-size=30&q=programming%7Ccoding&api-key=";
-    //  "http://content.guardianapis.com/search?section=technology&q=programming&api-key=50bf6d44-e9ce-401d-bb1a-2e38823403e6";
     public static String apiKey = BuildConfig.apiKey;
     ListView listView;
     private ArrayAdapter<String[]> adapter;
