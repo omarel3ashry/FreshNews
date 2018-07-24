@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="order_by_titles">
+        <item>@string/order_by_newest_title</item>
+        <item>@string/order_by_oldest_title</item>
+        <item>@string/order_by_relevance_title</item>
+    </string-array>
+    <string-array name="order_by_values">
+        <item>@string/order_by_newest_value</item>
+        <item>@string/order_by_oldest_value</item>
+        <item>@string/order_by_relevance_value</item>
+    </string-array>
+
+    <string-array name="use_date_titles">
+        <item>@string/use_date_published_title</item>
+        <item>@string/use_date_newspaper_edition_title</item>
+        <item>@string/use_date_last_modified_title</item>
+    </string-array>
+    <string-array name="use_date_values">
+        <item>@string/use_date_published_value</item>
+        <item>@string/use_date_newspaper_edition_value</item>
+        <item>@string/use_date_last_modified_value</item>
+    </string-array>
+</resources>

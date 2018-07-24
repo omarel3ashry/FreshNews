@@ -17,11 +17,16 @@ public class mainLoader extends AsyncTaskLoader<ArrayList<String[]>> {
     }
 
     @Override
+    protected void onStartLoading() {
+        forceLoad();
+    }
+
+    @Override
     public ArrayList<String[]> loadInBackground() {
 
         if (mUrl == null) {
             return null;
         }
-        return fetchingData(MainActivity.requestedUrl + MainActivity.apiKey);
+        return fetchingData(mUrl);
     }
 }

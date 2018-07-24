@@ -56,6 +56,7 @@ public final class QueryUtil {
                 jsonResponse = readFromStream(inputStream);
             } else {
                 Log.e(LOG, "Error response code: " + urlConnection.getResponseCode());
+                Log.i("URL", url.toString());
             }
         } catch (IOException e) {
             Log.e(LOG, "Problem retrieving the news JSON results", e);
@@ -66,6 +67,7 @@ public final class QueryUtil {
             if (inputStream != null) {
                 inputStream.close();
             }
+            Log.i("URL", url.toString());
             return jsonResponse;
         }
     }

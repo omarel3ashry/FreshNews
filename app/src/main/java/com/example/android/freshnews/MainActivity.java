@@ -4,14 +4,18 @@ import android.app.LoaderManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -26,7 +30,8 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<ArrayList<String[]>> {
     public static ArrayList<String[]> resultList;
     public static final String requestedUrl =
-            "https://content.guardianapis.com/search?section=technology%7Ceducation%7Cbreak-into-tech%7Cinfo&from-date=2017-01-01&page-size=30&q=programming%7Ccoding&api-key=";
+            "https://content.guardianapis.com/search";
+    //?section=technology%7Ceducation%7Cbreak-into-tech%7Cinfo&from-date=2017-01-01&page-size=30&q=programming%7Ccoding&api-key=
     public static String apiKey = BuildConfig.apiKey;
     ListView listView;
     private ArrayAdapter<String[]> adapter;
@@ -83,10 +88,46 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+        if (itemId == R.id.settings) {
+            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     public Loader<ArrayList<String[]>> onCreateLoader(int i, Bundle bundle) {
-        return new mainLoader(MainActivity.this, requestedUrl + apiKey);
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        String pageSize = sharedPref.getString(
+                getString(R.string.page_size_key),
+                getString(R.string.page_size_default));
+        String orderBy = sharedPref.getString(
+                getString(R.string.order_by_key),
+                getString(R.string.order_by_default));
+        String useDate = sharedPref.getString(
+                getString(R.string.use_date_key),
+                getString(R.string.use_date_default));
+
+        Uri uri = Uri.parse(requestedUrl);
+        Uri.Builder builder = uri.buildUpon();
+        builder.appendQueryParameter("q", "programming|coding");
+        builder.appendQueryParameter("section", "technology|education|break-into-tech|info");
+        builder.appendQueryParameter("page-size", pageSize);
+        builder.appendQueryParameter("order-by", orderBy);
+        builder.appendQueryParameter("use-date", useDate);
+        builder.appendQueryParameter("api-key", apiKey);
+
+        return new mainLoader(MainActivity.this, builder.toString());
     }
 
     @Override

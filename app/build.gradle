@@ -12,11 +12,11 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        each {type ->
-            type.buildConfigField STRING,'apiKey',API_KEY
+        each { type ->
+            type.buildConfigField STRING, 'apiKey', API_KEY
         }
         manifestPlaceholders = [
-                API_KEY : API_KEY
+                API_KEY: API_KEY
         ]
     }
     buildTypes {

@@ -2,4 +2,39 @@
     <string name="app_name">Fresh News</string>
     <string name="no_internet">No internet connection.</string>
     <string name="no_news">No news to show.</string>
+
+
+    <string name="settings_menu_title">News Settings</string>
+
+    <string name="page_size_title">Page Size</string>
+    <string name="page_size_key" translatable="false">page-size</string>
+    <string name="page_size_default" translatable="false">30</string>
+
+    <string name="order_by_title">Order By</string>
+    <string name="order_by_key">order-by</string>
+    <string name="order_by_default">@string/order_by_newest_value</string>
+
+    <string name="order_by_newest_title">Newest</string>
+    <string name="order_by_newest_value">newest</string>
+
+    <string name="order_by_oldest_title">Oldest</string>
+    <string name="order_by_oldest_value">oldest</string>
+
+    <string name="order_by_relevance_title">Relevance</string>
+    <string name="order_by_relevance_value">relevance</string>
+
+    <string name="use_date_title">Use Date</string>
+    <string name="use_date_key">use-date</string>
+    <string name="use_date_default">@string/use_date_published_value</string>
+
+    <string name="use_date_published_title">Published</string>
+    <string name="use_date_published_value">published</string>
+
+    <string name="use_date_newspaper_edition_title">Newspaper Edition</string>
+    <string name="use_date_newspaper_edition_value">newspaper-edition</string>
+
+    <string name="use_date_last_modified_title">Last Modified</string>
+    <string name="use_date_last_modified_value">last-modified</string>
+
+
 </resources>
