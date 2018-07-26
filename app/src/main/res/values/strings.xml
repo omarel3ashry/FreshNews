@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">Fresh News</string>
     <string name="no_internet">No internet connection.</string>
-    <string name="no_news">No news to show.</string>
+    <string name="no_news">Currently there are no news for you.
+        You can always come later and check for all new news.</string>
 
 
     <string name="settings_menu_title">News Settings</string>

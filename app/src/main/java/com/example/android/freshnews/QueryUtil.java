@@ -16,7 +16,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public final class QueryUtil {
+final class QueryUtil {
     private static URL createUrl(String requestedURL) {
         URL url = null;
         try {
@@ -27,16 +27,16 @@ public final class QueryUtil {
         return url;
     }
 
-    public static ArrayList<String[]> fetchingData(String url) {
-        ArrayList<String[]> arrayList;
+    static ArrayList<News> fetchingData(String url) {
+
         String jsonResponse = "";
         try {
             jsonResponse = makeHttpRequest(createUrl(url));
         } catch (IOException e) {
             Log.e(LOG, "Error closing input stream", e);
         }
-        arrayList = extractNews(jsonResponse);
-        return arrayList;
+
+        return extractNews(jsonResponse);
     }
 
     private static final String LOG = QueryUtil.class.getSimpleName();
@@ -72,7 +72,6 @@ public final class QueryUtil {
         }
     }
 
-
     private static String readFromStream(InputStream inputStream) {
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         StringBuilder sb = new StringBuilder();
@@ -96,9 +95,9 @@ public final class QueryUtil {
     }
 
 
-    private static ArrayList<String[]> extractNews(String jsonRes) {
+    private static ArrayList<News> extractNews(String jsonRes) {
 
-        ArrayList<String[]> news = new ArrayList<>();
+        ArrayList<News> news = new ArrayList<>();
 
         if (TextUtils.isEmpty(jsonRes)) {
             return null;
@@ -112,12 +111,22 @@ public final class QueryUtil {
             for (int i = 0; i < results.length(); i++) {
 
                 JSONObject object = results.getJSONObject(i);
-                String firstString = object.getString("sectionName");
-                String secondString = object.getString("webTitle");
+                String author = "";
+                String sectionName = object.getString("sectionName");
+                String webTitle = object.getString("webTitle");
                 String pageURL = object.getString("webUrl");
+                String date = object.getString("webPublicationDate");
+                String[] temp = date.split("T");
+                date = temp[0];
+                JSONArray tags = object.getJSONArray("tags");
+                if (tags.optJSONObject(0) != null) {
+                    JSONObject tagsObject = tags.getJSONObject(0);
+                    author = tagsObject.getString("webTitle");
+                }
+
 
                 news.add(
-                        new String[]{firstString, secondString, pageURL});
+                        new News(sectionName, webTitle, author, date, pageURL));
 
             }
         } catch (JSONException e) {

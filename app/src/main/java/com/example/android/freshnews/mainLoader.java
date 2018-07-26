@@ -7,12 +7,13 @@ import java.util.ArrayList;
 
 import static com.example.android.freshnews.QueryUtil.fetchingData;
 
-public class mainLoader extends AsyncTaskLoader<ArrayList<String[]>> {
+public class mainLoader extends AsyncTaskLoader<ArrayList<News>> {
     private String mUrl;
 
     mainLoader(Context context, String url) {
         super(context);
         mUrl = url;
+
 
     }
 
@@ -22,7 +23,7 @@ public class mainLoader extends AsyncTaskLoader<ArrayList<String[]>> {
     }
 
     @Override
-    public ArrayList<String[]> loadInBackground() {
+    public ArrayList<News> loadInBackground() {
 
         if (mUrl == null) {
             return null;

@@ -4,4 +4,5 @@
     android:name="com.example.android.freshnews.SettingsActivity$SettingsFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.android.freshnews.SettingsActivity" />
+    tools:context="com.example.android.freshnews.SettingsActivity"
+    tools:ignore="MissingId" />
